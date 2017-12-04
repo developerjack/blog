@@ -11,6 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient("router")
 public interface SampleClient {
 
-    @RequestMapping(value = "/sample/hi", method = RequestMethod.GET)
+    @RequestMapping(value = "/provider/sample/hi", method = RequestMethod.GET)
     String sayHi(@RequestParam("name") String name);
 }

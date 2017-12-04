@@ -9,6 +9,6 @@ spring:
     name: router
 zuul:
   routes:
-    api-a:
-      path: /**
+    provider:
+      path: /provider/**
       serviceId: provider
