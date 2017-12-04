@@ -1,0 +1,29 @@
+apply from: file("${rootDir}/gradle/project.gradle")
+
+group 'org.jack.blog'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.8.RELEASE")
+    }
+}
+
+subprojects {
+    apply from: file("${rootDir}/gradle/check.gradle")
+    apply plugin: 'org.springframework.boot'
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.SR4"
+        }
+    }
+
+    dependencies {
+        testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+
+}
