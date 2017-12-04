@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'mysql:mysql-connector-java:5.1.42'
+        classpath 'org.flywaydb:flyway-gradle-plugin:4.2.0'
+    }
+}
+
+apply plugin: org.flywaydb.gradle.FlywayPlugin
+
+tasks.findAll { task -> task.name.startsWith('flyway') }.forEach { flywayTask ->
+    flywayTask.dependsOn {
+        def flywayProperties = "src/main/resources/flyway.properties"
+
+        assert project.file(flywayProperties).exists()
+
+        def Properties properties = new Properties()
+        project.file(flywayProperties).withInputStream {
+            properties.load(it)
+        }
+        properties.each { key, value ->
+            project.ext[key] = value
+        }
+
+        logger.info("loading flyway properties, file=${project.file(flywayProperties)}")
+    }
+}

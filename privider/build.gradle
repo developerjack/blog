@@ -1,3 +1,7 @@
+apply from: file("${rootDir}/gradle/db-migration.gradle")
 dependencies {
     compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("com.alibaba:druid:1.1.2")
+    runtime("mysql:mysql-connector-java:5.1.42")
 }
