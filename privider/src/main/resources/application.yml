@@ -4,6 +4,54 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8000/eureka/
+
 spring:
-  application:
-    name: provider
+    application:
+      name: provider
+    profiles.active: dev
+    freemarker.cache: true
+    resources.cache-period: 7200
+    datasource:
+        # see more properties at http://www.mchange.com/projects/c3p0/#configuration_properties
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
+        username: root
+        password: root
+        #配置初始化大小、最小、最大
+        initialSize: 1
+        minIdle: 8
+        maxActive: 10
+        #配置获取连接等待超时的时间
+        maxWait: 60000
+        #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        timeBetweenEvictionRunsMillis: 60000
+        #配置一个连接在池中最小生存的时间，单位是毫秒
+        minEvictableIdleTimeMillis: 30000
+        validationQuery: SELECT 'x'
+        testWhileIdle: true
+        testOnBorrow: true
+        testOnReturn: false
+        #配置监控统计拦截的filters
+        filters: stat,wall
+        #打开PSCache，并且指定每个连接上PSCache的大小
+        poolPreparedStatements: false
+        maxPoolPreparedStatementPerConnectionSize: 20
+        mapUnderscoreToCamelCase: true
+    jpa:
+        show-sql: false
+        hibernate:
+            # Hibernate DDL  auto: create, create-drop, update, validate
+            ddl-auto: validate
+            properties:
+                hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+                hibernate.current_session_context_class: org.springframework.orm.hibernate4.SpringSessionContext
+    data:
+      mongodb:
+        uri: mongodb://jack:jack@localhost:27017/test
+
+# Logging level (TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF)
+logging:
+    level:
+        org.hibernate: INFO
+        org.springframework: INFO
+    file: provider.log
