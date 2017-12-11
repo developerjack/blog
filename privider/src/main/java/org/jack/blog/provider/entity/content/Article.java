@@ -1,13 +1,13 @@
 package org.jack.blog.provider.entity.content;
 
-import javax.persistence.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * @author jack
  */
+@Document
 public class Article {
 
-    @Id
     private String id;
 
     private String title;
