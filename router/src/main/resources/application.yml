@@ -12,3 +12,20 @@ zuul:
     provider:
       path: /provider/**
       serviceId: provider
+
+security:
+  user:
+    password: user  # 直接登录时的密码
+  ignored: /
+  sessions: never   # session策略
+  oauth2:
+    sso:
+      loginPath: /login   # 登录路径
+    client:
+      clientId: 2b45d12364737d958401
+      clientSecret: 1035ae469828468889867019df855e0767896f72
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
