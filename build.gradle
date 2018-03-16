@@ -2,6 +2,9 @@ apply from: file("${rootDir}/gradle/project.gradle")
 
 buildscript {
     repositories {
+        maven {
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
         mavenCentral()
     }
     dependencies {

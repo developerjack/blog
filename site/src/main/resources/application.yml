@@ -2,4 +2,10 @@ server:
   port: 80
 spring:
   application:
-    name: site
+    name:
+      name: site
+  profiles:
+    active: dev
+
+
+
