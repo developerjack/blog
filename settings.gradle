@@ -1,7 +1,3 @@
 rootProject.name = 'blog'
-include 'privider'
 include 'site'
-include 'oper'
-include 'server'
-include 'router'
 

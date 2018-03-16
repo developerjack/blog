@@ -1,8 +1,5 @@
 apply from: file("${rootDir}/gradle/project.gradle")
 
-group 'org.jack.blog'
-version '1.0-SNAPSHOT'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -13,14 +10,11 @@ buildscript {
 }
 
 subprojects {
+    group 'org.jack.blog'
+    version '1.0-SNAPSHOT'
+
     apply from: file("${rootDir}/gradle/check.gradle")
     apply plugin: 'org.springframework.boot'
-
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.SR4"
-        }
-    }
 
     dependencies {
         testCompile('org.springframework.boot:spring-boot-starter-test')
